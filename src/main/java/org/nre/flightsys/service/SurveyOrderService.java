@@ -10,7 +10,7 @@ import java.io.IOException;
 @Service
 public class SurveyOrderService {
 
-    public static void takeOrder(String drinkItem, String foodItem, int id) throws IOException {
+    public static boolean takeOrder(String drinkItem, String foodItem, String user) throws IOException {
 
         File file = new File("src/main/resources/order.txt");
         if (!file.exists()) {
@@ -19,15 +19,16 @@ public class SurveyOrderService {
         FileWriter fw = new FileWriter(file.getName(),true);
         BufferedWriter writer = new BufferedWriter(fw);
 
-        writer.write(Integer.toString(id));
+        writer.write(user);
         writer.write(",");
         writer.write(drinkItem);
         writer.write(",");
         writer.write(foodItem);
         writer.write(",");
+        return true;
     }
 
-    public static void submitSurvey(int rating1, int rating2, int rating3, String comment, int id) throws IOException {
+    public static boolean submitSurvey(int rating1, int rating2, int rating3, String comment, String user) throws IOException {
         File file = new File("src/main/resources/survey.txt");
         if (!file.exists()) {
             file.createNewFile();
@@ -35,7 +36,7 @@ public class SurveyOrderService {
         FileWriter fw = new FileWriter(file.getName(),true);
         BufferedWriter writer = new BufferedWriter(fw);
 
-        writer.write(Integer.toString(id));
+        writer.write(user);
         writer.write(", ");
         writer.write(Integer.toString(rating1));
         writer.write(", ");
@@ -47,6 +48,7 @@ public class SurveyOrderService {
         writer.newLine();
 
         writer.close();
+        return true;
     }
 
 }
