@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Predicate;
 
 @Service
 public class POIService {
 
-    public static POI[] getAllPOIs (String destination) throws FileNotFoundException {
+    public static POI[] getAllPOIs(String destination) throws FileNotFoundException {
         Scanner scan = new Scanner(new FileReader("src/main/resources/pointsOfInterest.txt"));
         int n = 0;
         POI[] pois = new POI[10];
@@ -29,7 +28,7 @@ public class POIService {
                 name = line[1];
             }
             if (line[0].length() > 0) {
-                if(line[0].equals(destination)) {
+                if (line[0].equals(destination)) {
                     POI poi = new POI();
                     poi.setName(name);
                     poi.setPopularity(popularity);
@@ -62,27 +61,22 @@ public class POIService {
         return pois;
     }
 
+    public static POI[] filter(POI[] pois, int threshold) {
+        List<POI> ret = new ArrayList<>();
+        Arrays.stream(pois).filter(o1 -> (o1.getPopularity() > threshold)).forEach(ret::add);
+        return ret.toArray(new POI[0]);
+    }
+
     public void savePOI(POI poi) throws IOException {
         File file = new File("src/main/resources/favouritePOIs.txt");
         if (!file.exists()) {
             file.createNewFile();
         }
-        FileWriter fw = new FileWriter(file.getName(),true);
+        FileWriter fw = new FileWriter(file.getName(), true);
         BufferedWriter writer = new BufferedWriter(fw);
 
         writer.write(poi.toString());
 
         writer.close();
-    }
-    public static POI[] filter(POI[] pois, int threshold) {
-            List ret =null;
-        Arrays.stream(pois).filter(o1 -> {
-            if (o1.getPopularity() > threshold) {
-                ret.add(o1);
-            }
-            return false;
-        });
-        POI[] retArr = (POI[]) ret.toArray();
-        return retArr;
     }
 }

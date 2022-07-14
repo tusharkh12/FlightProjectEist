@@ -4,6 +4,11 @@ plugins {
     id 'java'
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-Xlint:unchecked'
+    options.deprecation = true
+}
+
 group = 'hello.world'
 version = '1.0.0'
 sourceCompatibility = '17'
