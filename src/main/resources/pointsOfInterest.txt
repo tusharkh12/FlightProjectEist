@@ -1,0 +1,13 @@
+London, Westminster Abbey, 7
+London, British Museum, 8
+London, Buckingham Palace, 10
+London, Tower of London, 6
+London, Natural History Museum, 7
+London, St Paul's Cathedral, 5
+London, Victoria and Albert Museum, 5
+London, The National Gallery, 3
+London, Tate Modern, 7
+London, Trafalgar Square, 6
+London, Borough Market, 2
+London, London Eye, 4
+London, The British Library, 1
