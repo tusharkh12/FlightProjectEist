@@ -1,9 +1,10 @@
 import { Container, Grid, Typography } from "@mui/material";
 import SearchBar from "../components/SearchBar";
-import React from "react";
+import React, { useState } from "react";
 import TopBar from "../components/TopBar";
 
 export default function Dashboard() {
+
   return (
     <>
       <TopBar onAccountPage={false} />
